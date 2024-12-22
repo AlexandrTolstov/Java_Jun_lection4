@@ -14,6 +14,7 @@ public class Db {
             statement.execute("CREATE SCHEMA `test`");
             statement.execute("CREATE TABLE `test`.`table` (`id` INT NOT NULL, `firstname` VARCHAR(45) NULL, `lastname` VARCHAR(45) NULL, PRIMARY KEY(`id`));");
             statement.execute("INSERT INTO `test`.`table` (`id`, `firstname`, `lastname`) VALUES (1, 'Иванов', 'Иван');");
+            statement.execute("INSERT INTO `test`.`table` (`id`, `firstname`, `lastname`) VALUES (2, 'Петров', 'Петр');");
 
             ResultSet set = statement.executeQuery("SELECT * FROM test.table;");
             while (set.next()){
