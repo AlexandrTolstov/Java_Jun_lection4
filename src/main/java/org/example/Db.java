@@ -1,9 +1,6 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Db {
     private static final String URL = "jdbc:mysql://localhost:3306";
@@ -16,6 +13,11 @@ public class Db {
             statement.execute("DROP SCHEMA `test`");
             statement.execute("CREATE SCHEMA `test`");
             statement.execute("CREATE TABLE `test`.`table` (`id` INT NOT NULL, `firstname` VARCHAR(45) NULL, `lastname` VARCHAR(45) NULL, PRIMARY KEY(`id`));");
+
+            ResultSet set = statement.executeQuery("SELECT * FROM test.table;");
+            while (set.next()){
+                System.out.println(set.getString(3) + " " + set.getString(2) + " " + set.getInt(1));
+            }
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
