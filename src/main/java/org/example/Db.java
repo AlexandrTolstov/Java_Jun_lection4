@@ -12,6 +12,10 @@ public class Db {
 
     public static void con(){
         try(Connection con = DriverManager.getConnection(URL, USER, PASSWORD)){
+            Statement statement = con.createStatement();
+            statement.execute("DROP SCHEMA `test`");
+            statement.execute("CREATE SCHEMA `test`");
+            statement.execute("CREATE TABLE `test`.`table` (`id` INT NOT NULL, `firstname` VARCHAR(45) NULL, `lastname` VARCHAR(45) NULL, PRIMARY KEY(`id`));");
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
